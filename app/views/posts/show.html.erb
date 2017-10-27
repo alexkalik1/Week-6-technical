@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @post.body %>
+</p>
+
+<h1>Comments</h1>
+
+<% @comments.each do |comm| %>
+
+  <p>Commenter: <%= comm.title %></p>
+  <p>Comment: <%= comm.body %></p>
+
+<% end %>
+
+<h1>Add a comment:</h1>
+
+<%= form_for [@story, Comment.new] do |f| %>
+<%= f.label :commenter %>
+<%= f.text_field :title, placeholder: "Commenter" %><br>
+<%= f.label :body %>
+<%= f.text_area :body, placeholder: "Body" %><br>
+<%= f.submit "Create Comment" %>
+<% end %>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
